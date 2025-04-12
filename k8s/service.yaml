@@ -5,11 +5,9 @@ metadata:
 spec:
   selector:
     app: "goserver-infnet"
-  type: NodePort
+  type: ClusterIP
   ports:
-  - name: goserver-infnet-service
-    port: 80
-    targetPort: 80
-    protocol: TCP
-    nodePort: 30001 #30.000 ~32.767
+    - name: goserver-infnet-service
+    - port: 80
+      protocol: TCP
     
