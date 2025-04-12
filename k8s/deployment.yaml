@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: "goserver-infnet"
-        image: "oandremotta/projeto-infnet:v1"
+        image: "oandremotta/projeto-infnet:v4"
 
         resources:
           requests:
@@ -41,7 +41,7 @@ spec:
           periodSeconds: 5
           failureThreshold: 3
           timeoutSeconds: 1
-          successThreshold: 10
+          successThreshold: 1
 
         livenessProbe:
           httpGet:

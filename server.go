@@ -24,7 +24,7 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 func Healthz(w http.ResponseWriter, r *http.Request) {
 	duration := time.Since(startedAt)
 
-	if duration.Seconds() < 10 || duration.Seconds() > 60 {
+	if duration.Seconds() < 10 || duration.Seconds() > 320 {
 		w.WriteHeader(500)
 		w.Write([]byte(fmt.Sprintf("Duration: %v", duration.Seconds())))
 	} else {
