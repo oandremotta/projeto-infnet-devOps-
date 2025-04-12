@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "goserver-infnet"
+  labels:
+    app: "goserver-infnet"
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: "goserver-infnet"
+  template:
+    metadata:
+      labels:
+        app: "goserver-infnet"
+    spec:
+      containers:
+      - name: "goserver-infnet"
+        image: "oandremotta/projeto-infnet:v5"
+
+        startupProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+          periodSeconds: 5
+          failureThreshold: 3
+          timeoutSeconds: 30
+
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+          periodSeconds: 5
+          failureThreshold: 3
+          timeoutSeconds: 1
+          successThreshold: 10
+
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+          periodSeconds: 5
+          failureThreshold: 3
+          timeoutSeconds: 1
+          successThreshold: 1
+        envFrom:      
+          - configMapRef:
+              name: goserver-infnet-configmap

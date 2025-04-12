@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "goserver-infnet"
+  labels:
+    app: "goserver-infnet"
+    spec:
+spec:
+  containers:
+  - name: "goserver-infnet"
+    image: "oandremotta/projeto-infnet"
