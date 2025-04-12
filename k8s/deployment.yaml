@@ -16,12 +16,20 @@ spec:
     spec:
       containers:
       - name: "goserver-infnet"
-        image: "oandremotta/projeto-infnet:v5"
+        image: "oandremotta/projeto-infnet:v1"
 
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 200Mi
+            
         startupProbe:
           httpGet:
             path: /healthz
-            port: 8000
+            port: 80
           periodSeconds: 5
           failureThreshold: 3
           timeoutSeconds: 30
@@ -29,7 +37,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 8000
+            port: 80
           periodSeconds: 5
           failureThreshold: 3
           timeoutSeconds: 1
@@ -38,7 +46,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 8000
+            port: 80
           periodSeconds: 5
           failureThreshold: 3
           timeoutSeconds: 1
