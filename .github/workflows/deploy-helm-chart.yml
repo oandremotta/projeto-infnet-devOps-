@@ -1,0 +1,32 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Passo 1: Fazer checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Passo 2: Instalar kubectl
+      - name: Install kubectl
+        run: |
+          curl -LO https://dl.k8s.io/release/v1.23.6/bin/linux/amd64/kubectl
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+
+      # Passo 3: Configurar o kubectl com o kubeconfig
+      - name: Set up kubectl
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
+      # Passo 4: Deploy usando kubectl ou helm
+      - name: Deploy with Helm
+        run: |
+          helm upgrade --install my-release ./helm-chart -f ./helm/values.yaml --namespace default

@@ -1,0 +1,6 @@
+prometheus:
+  persistence:
+    enabled: true
+    existingClaim: prometheus-pvc  
+    storageClass: standard  
+    size: 10Gi  

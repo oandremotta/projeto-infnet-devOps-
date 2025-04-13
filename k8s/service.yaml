@@ -7,7 +7,7 @@ spec:
     app: "goserver-infnet"
   type: ClusterIP
   ports:
-    - name: goserver-infnet-service
-    - port: 80
+    - name: "http"         
+      port: 80             
+      targetPort: 80       
       protocol: TCP
-    
