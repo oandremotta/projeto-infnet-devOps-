@@ -21,9 +21,10 @@ jobs:
           chmod +x ./kubectl
           sudo mv ./kubectl /usr/local/bin/kubectl
 
-      # Passo 3: Configurar o kubectl com o kubeconfig
+      # Passo 3: Criar o diretório .kube e configurar o kubectl com o kubeconfig
       - name: Set up kubectl
         run: |
+          mkdir -p $HOME/.kube
           echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
       # Passo 4: Deploy usando kubectl ou helm
