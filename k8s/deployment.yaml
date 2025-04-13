@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: "goserver-infnet"
-        image: "oandremotta/projeto-infnet:v4"
+        image: "oandremotta/projeto-infnet:v1.0"
 
         resources:
           requests:
